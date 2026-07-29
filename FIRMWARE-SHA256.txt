@@ -1,0 +1,2 @@
+7c40c69fa351b81770cc3aa831c24525269f6887396b035a6fd94d5a24790bdd  firmware.bin
+3f1b5c1999b2ac6f97da7fc34b3184eded980eda7613cf2b3c0cd91c93cacd95  firmware-full-16MB.bin

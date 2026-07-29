@@ -5,3 +5,7 @@ crosspoint/managed_components/
 *.pyc
 __pycache__/
 .pio/
+
+# Shareable firmware artifacts (regenerated per release; too large to track)
+/firmware.bin
+/firmware-full-16MB.bin
