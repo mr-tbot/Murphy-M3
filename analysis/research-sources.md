@@ -1,0 +1,66 @@
+# Research Sources — Crosspoint × Murphy M3 sweep (2026-07-29)
+
+- <https://github.com/crosspoint-reader/crosspoint-reader> — Canonical CrossPoint repo: README, source tree, docs/, platformio.ini, SCOPE.md, branch list (no murphy branch)
+- <https://api.github.com/repos/crosspoint-reader/crosspoint-reader> — Repo metadata: created 2025-12-03 (as daveallie/crosspoint-reader), 6,615 stars, 1,300 forks, MIT, develop branch; also releases endpoint for 1.2.0-1.5.0 history and daveallie redirect proof
+- <https://github.com/crosspoint-reader/crosspoint-reader/blob/develop/SCOPE.md> — Scope doc: PDF and 'Media Playback: No Audio players or Audio-books' explicitly out of scope; HAL/SDK boundary rule
+- <https://github.com/crosspoint-reader/crosspoint-reader/issues/626> — PDF Support issue closed 'out of scope'; pointer to xtcjs.app/pdf converter
+- <https://github.com/crosspoint-reader/crosspoint-reader/issues/2712> — PDFs filtered from on-device browser; web-file-manager PDF viewing is browser-side
+- <https://github.com/crosspoint-reader/crosspoint-reader/issues/290> — X4-as-music-player issue, self-closed by community author (ESP32-C3 BLE-only)
+- <https://github.com/crosspoint-reader/crosspoint-reader/issues/2311> — Vendor corogoo: Murphy M4/M3.7 'fully open to developers', schematics offered; closed via itsthisjustin's email contact
+- <https://github.com/crosspoint-reader/crosspoint-reader/discussions/222> — daveallie (Jan 2026): 'Audio processing and playback is out of scope for CrossPoint'
+- <https://github.com/crosspoint-reader/crosspoint-reader/discussions/1680> — April 2026 roadmap: media playback out-of-scope, additional ESP32 devices in-scope
+- <https://github.com/crosspoint-reader/crosspoint-tools/blob/master/src/pages/home/FlashTools.jsx> — crosspointreader.com flasher source: x4pro device model (ESP32-S3, 480x800), DEVICE_BUILD_MODELS, /api/beta, x4pro-stock-en.bin
+- <https://github.com/Free-Ink/freeink-sdk> — FreeInk SDK: board profiles, panel drivers, Uc8253MurphyDriver, FreeInkBook/FreeInkUI, OpenX4 lineage, drop-in CrossPoint compatibility
+- <https://raw.githubusercontent.com/Free-Ink/freeink-sdk/main/libs/hardware/BoardConfig/include/BoardConfig.h> — MURPHY_M3 profile: batteryAdc=9 scale 3.030303, CHSC6x touch config, MURPHY_AUDIO ES8388 pin map, FREEINK_CAP_AUDIO=(MURPHY||M5)
+- <https://github.com/Free-Ink/freeink-sdk/blob/main/libs/hardware/AudioManager/include/AudioManager.h> — AudioManager: 'ES8388 (Murphy M3, OEM-recovered register sequence)', WAV playback, alarm loop, i2s_std
+- <https://raw.githubusercontent.com/Free-Ink/freeink-sdk/main/platformio.sample.ini> — SDK sample envs [env:murphy] and [env:x4pro]
+- <https://github.com/Free-Ink/freeink-sdk/blob/main/docs/xteink-x4pro-support.md> — X4 Pro bring-up: SSD1677/UC8179 batch variants, confirmed pinout, pending validations
+- <https://github.com/crosspoint-reader/community-sdk/tree/feat-support-for-m3> — The actual public M3 port branch: 6 commits (2026-05-26/27) — display, board config, input, SD, 4-level grayscale LUT, touch
+- <https://github.com/open-x4-epaper/community-sdk> — Upstream OpenX4 community SDK (freeink-sdk lineage; no Murphy files, last push 2026-04-25)
+- <https://github.com/crosspoint-reader/Murphy> — Primary M3/M4 RE repo: 16 MiB flash dump, Ghidra analysis, per-subsystem findings, probes, flash_when_ready.sh restore script, .gitmodules (CrowPanel + corogoo vendored)
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/README.md> — M3 pin map, flash layout, port status: display/SD/buttons/frontlight working; touch/audio/RTC stubbed
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/porting_crosspoint.md> — Porting plan: blockers, ADC-ladder->GPIO buttons, UI relayout, GPIO0 strapping warning, CrowPanel pin comparison, Justin's local tree paths
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/display_driver.md> — UC8253 driver analysis: stable B/W path with OEM LUT init, 4-level grayscale limits, partial refresh 0x17/0xA5 untested
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/display_hardware.md> — Panel identity GDEY037T03-FT21/UC8253 416x240 and confirmed bit-banged GPIO3-8 display bus (CrowPanel pinmaps wrong)
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/audio.md> — Pre-PR audio findings: ESP32-audioI2S 3.0.12 evidence, decoder list, codec/pins listed as unrecovered, recommended probes
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/touch.md> — Touch: CHSC6x-class at 0x2e SDA13/SCL12 IRQ44, stale-first-sample, FT6x36-at-0x38 ruled out
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/clock_rtc.md> — Clock/NTP/alarm evidence; RTC unproven on main branch, 0x51/0x68 candidate scans (superseded by RX8010SJ at 0x32)
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/flash_layout.md> — OEM partition table with offsets/sizes and app0 SHA-256; spiffs-vs-LittleFS note
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/firmware_identity.md> — Stock build provenance: ESP-IDF v4.4.7-dirty, arduino-lib-builder, Mar 5 2024, 'Secure version: 0'
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/upstream_mofei_firmware.md> — MoFei/corogoo upstream identification, touch track v525 OTA, LUT extraction
+- <https://raw.githubusercontent.com/crosspoint-reader/Murphy/main/m3/findings/network_and_ui.md> — OEM web UI endpoint list (no TTS/OpenAI key config), OTA URLs
+- <https://github.com/crosspoint-reader/Murphy/blob/main/m3/analysis/audio_rtc_string_refs.md> — Ghidra string refs: api.openai.com + /v1/audio/speech with 'refs: none' — dead vendored code
+- <https://github.com/crosspoint-reader/Murphy/pull/1> — Open PR: 16 M3 teardown photos (CaptainFrito, 2026-07-24) — ES8388/RX8010/ESP32-S3R8/GD25Q128ESIG markings, unmarked LiPo, '@COROGOO' silkscreen
+- <https://github.com/crosspoint-reader/Murphy/pull/2> — Open PR: reverse-engineered 3-page schematic Murphy_m3_Schematic1.pdf (nac283, 'There might be errors') — full GPIO/net map incl. ES8388 I2S, RX8010SJ, TP4054, AHT30, buzzer, CH442E, power tree
+- <https://api.github.com/repos/crosspoint-reader/Murphy/contributors> — Sole contributor itsthisjustin (Justin Mitchell), 38 commits, May 26-Jun 8 2026
+- <https://gitee.com/corogoo/3.7-inch-ink-screen-reader> — Binary-only OEM firmware host (OTA source); no schematics, no source, no license
+- <https://github.com/Elecrow-RD/CrowPanel-ESP32-3.7-E-paper-HMI-Display-with-240-416> — CrowPanel 3.7" reference board (schematic has no audio circuits — M3 is a modified variant)
+- <https://www.hgeek.com/products/hamgeek-m3-portable-e-book-reader-3-7-inch-touch-screen-e-paper-10-level-adjustable-backlight-clock-e-ink-display> — Official HamGeek M3 listing: $69, SKU 100504, MP3/WAV/AAC/FLAC wired-headphone music mode, 10-level frontlight, 'clock chip' claim, no battery mAh
+- <https://github.com/schreibfaul1/ESP32-audioI2S/blob/3.0.12/src/Audio.cpp> — Library in stock M3 firmware: openai_speech() hardcodes /v1/audio/speech (lines 437-439); setPinout() compile-time pin config; needs multi-core + PSRAM
+- <https://github.com/espressif/esp-adf> — ESP-ADF: full audio pipeline framework for ESP32-S3 (MP3/AAC/FLAC/WAV/OGG/OPUS/AMR)
+- <https://github.com/chmorgan/esp-audio-player> — Lightweight ESP-IDF decode-only player (with esp-libhelix-mp3 companion) — ESP-ADF alternative
+- <https://github.com/waveshareteam/ESP32-S3-ePaper-1.54G> — Precedent board: ESP32-S3 + e-paper + ES8311 codec + speaker + mic + microSD
+- <https://github.com/lanmarc77/esp-audio-book-player> — Mature ESP32 audiobook player (MAX98357A, AMR-WB/MP3/OGG, ~10uA sleep) — OLED, not e-ink
+- <https://oshwhub.com/leki_ghost/3-7-cun-mo-shui-ping> — Related open-hardware 3.7" e-ink reader + music player using MAX98357 I2S amp
+- <https://oshwhub.com/sammax/esp32_with_spi_sdcard> — Related DIY 3.7" UC8253 reader/clock design (RX8025T RTC, 4mm LiPo constraint)
+- <https://github.com/rtoslab/mupdf-rtt> — Only MCU-RTOS MuPDF port ever: ~2013-era MuPDF for RT-Thread, v0.1-alpha, 29 commits, 0 stars, no RAM figures, no proven runs
+- <https://ghostscript.com/~robin/mupdf_explored.pdf> — Robin Watts' MuPDF architecture book (store scavenging, banded rendering, FZ_ERROR_MEMORY back-off) — also the 292-page test PDF for this session's peak-heap measurements
+- <https://mupdf.com/core> — MuPDF 'at its smallest, just 2MB' footprint claim
+- <https://raw.githubusercontent.com/ArtifexSoftware/mupdf/master/include/mupdf/fitz/config.h> — Compile-time stripping: FZ_ENABLE_* toggles, FZ_PLOTTERS_G, TOFU* font removal (and context.h: FZ_STORE_DEFAULT=256MB)
+- <https://github.com/koreader/koreader-base/blob/master/ffi/mupdf.lua> — KOReader: MuPDF 1.27.2, 32MB store now, historical 8MB store + koreader#7627 overcommit-corruption caveat
+- <https://github.com/koreader/kindlepdfviewer/wiki/Download> — kindlepdfviewer builds for Kindle 2/DX/DXG/K3 — MuPDF on 32MB-RAM hardware (iFixit teardown #624; issue #79: 64MB store + 5MB tile cache config)
+- <https://hackaday.io/project/192366-floss-book-serving-system> — 'Full MuPDF compiles to 60+MB' — why that project chose RPi CM4 over an MCU
+- <https://components.espressif.com/components/espressif/freetype> — Official espressif/freetype ESP-IDF component (espressif/zlib also exists; openjpeg/jbig2dec absent) — MuPDF dep portability proof
+- <https://github.com/varo6/xtcjs> — xtcjs.app source: browser-local PDF/CBZ->XTC via pdfjs-dist ^5.7.284 + pdf-lib ^1.17.1; server is stats-only
+- <https://github.com/bigbag/epub-to-xtc-converter> — XTC/XTCH format spec (pre-rendered 480x800 1-bit/2-bit pages) and CREngine-WASM off-device conversion architecture
+- <https://github.com/JohnsonKyril/crosspoint-reader-pdf> — Misleadingly-named fork verified 0 commits ahead of upstream — contains no PDF code
+- <https://github.com/usetrmnl/trmnl-firmware> — TRMNL ESP32-C3 firmware — pure server-side-rendering pattern (device blits server BMPs; byos_fastapi backend)
+- <https://github.com/michaelrsweet/pdfio> — Small C PDF library, explicitly 'not concerned with rendering or viewing'
+- <https://deb.debian.org/debian/pool/main/m/mupdf/> — mupdf-tools 1.27.0+ds1-6 used for this session's mutool draw -s m / -m hard-cap measurements
+- <https://www.svartling.net/2026/07/tutorial-how-to-install-crosspoint-on.html> — July 2026 tutorial: X4 Pro flashed via crosspointreader.com web installer, 'Beta 3 or newer' (companion review covers the fourth beta)
+- <https://productimpossible.com/articles/xteink-firmware-ecosystem/> — 2026 Xteink/CrossPoint ecosystem overview; groups Murphy repo with M5Stack Paper S3 and LilyGo T5S3 ports; founder-led governance note
+- <https://www.cnx-software.com/2026/07/23/99-xteink-x4-pro-4-3-inch-touchscreen-ereader-to-support-crosspoint-reader-open-source-firmware/> — X4 Pro specs ($99, ESP32-S3, 1100mAh, no audio hardware listed) + official CrossPoint partnership
+- <https://apps.apple.com/af/app/dotink-eink-assistant/id6754073002> — DotInk iOS companion app listing 'Murphy 3.7' device support with CrossPoint font generation
+- <https://www.bilibili.com/video/BV166G7zAE9W/> — Chinese video review of the 墨菲 (Murphy) 3.7" e-ink reader — only found media coverage of the device
+- <https://github.com/atomic14/diy-esp32-epub-reader> — CrossPoint's credited inspiration; also evidence ESP32 readers are EPUB-only
+- <https://crosspointreader.com/> — Official site: web flasher (X4 Pro channel), Xteink Unlocker, developer-edition hardware sales

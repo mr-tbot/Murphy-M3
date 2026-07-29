@@ -1,0 +1,17 @@
+[submodule "crosspoint"]
+	path = crosspoint
+	url = https://github.com/crosspoint-reader/crosspoint-reader
+	branch = develop
+[submodule "upstream/freeink-sdk"]
+	path = upstream/freeink-sdk
+	url = https://github.com/Free-Ink/freeink-sdk
+[submodule "upstream/murphy"]
+	path = upstream/murphy
+	url = https://github.com/crosspoint-reader/Murphy
+[submodule "upstream/community-sdk"]
+	path = upstream/community-sdk
+	url = https://github.com/crosspoint-reader/community-sdk
+	branch = feat-support-for-m3
+[submodule "upstream/freeink-reader"]
+	path = upstream/freeink-reader
+	url = https://github.com/Free-Ink/freeink-reader

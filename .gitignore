@@ -1,0 +1,6 @@
+.agent/
+crosspoint/build/
+crosspoint/.pio/
+crosspoint/managed_components/
+*.pyc
+__pycache__/
