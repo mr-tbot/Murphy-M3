@@ -4,3 +4,4 @@ crosspoint/.pio/
 crosspoint/managed_components/
 *.pyc
 __pycache__/
+.pio/
