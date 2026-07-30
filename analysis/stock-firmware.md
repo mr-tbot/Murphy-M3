@@ -10,7 +10,7 @@
 | PSRAM | 8 MB embedded (AP_3v3 → ESP32-S3R8, bare chip) |
 | Flash | 16 MB quad-SPI, GigaDevice (mfr `c8`, dev `4018` = GD25Q128) |
 | USB | Native USB-Serial/JTAG (`303a:1001`) |
-| MAC | `48:ca:43:a4:63:38` |
+| MAC | `48:ca:43:xx:xx:xx (device-specific, redacted)` |
 | Flash encryption | **Disabled** (`SPI_BOOT_CRYPT_CNT = 0b000`) |
 | Secure boot | **Disabled** (`SECURE_BOOT_EN = 0`) |
 | USB-JTAG | Enabled (`DIS_USB_JTAG = 0`) |

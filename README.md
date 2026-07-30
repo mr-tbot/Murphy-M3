@@ -3,7 +3,7 @@
 Everything needed to run the open-source
 [CrossPoint](https://github.com/crosspoint-reader/crosspoint-reader) e-reader firmware on the
 **Murphy M3** (HamGeek M3 / 墨菲) ESP32-S3 e-reader, in one place: a full stock-firmware
-backup, the CrossPoint source tree + FreeInk SDK (which already carries a Murphy M3 board
+notes, the CrossPoint source tree + FreeInk SDK (which already carries a Murphy M3 board
 profile), the community reverse-engineering work, and a deep-dive port analysis.
 
 **Start here → [analysis/crosspoint-port-deep-dive.md](analysis/crosspoint-port-deep-dive.md)**
@@ -20,7 +20,9 @@ profile), the community reverse-engineering work, and a deep-dive port analysis.
 
 ## Repo layout
 
-- [`backup/stock-firmware/`](backup/stock-firmware/) — full 16 MB stock flash dump + extracted partitions (the way back to stock; **contains WiFi creds in NVS — never publish raw**)
+- `backup/stock-firmware/` — *not in this repository.* A stock flash dump is the way back to
+  factory firmware, but its NVS partition holds the device owner's WiFi credentials, so it is
+  deliberately untracked. Take your own before flashing (see below).
 - [`crosspoint/`](crosspoint/) — CrossPoint firmware, `develop` branch (submodule, includes freeink-sdk)
 - [`upstream/freeink-sdk/`](upstream/freeink-sdk/) — FreeInk SDK: `MurphyM3` board profile, `Uc8253MurphyDriver`, ES8388 AudioManager, `[env:murphy]` (submodule)
 - [`upstream/murphy/`](upstream/murphy/) — crosspoint-reader/Murphy: M3/M4 dumps, Ghidra findings, probe sketches (submodule; local branches `pr1-teardown`, `pr2-schematic`)
@@ -30,13 +32,17 @@ profile), the community reverse-engineering work, and a deep-dive port analysis.
 - [`docs/hardware/`](docs/hardware/) — community reverse-engineered schematic PDF
 
 > **⚠️ Privacy note:** the full-flash dump includes the device's NVS partition, which stores
-> previously-configured WiFi credentials. Do not publish `backup/` contents without zeroing
+> previously-configured WiFi credentials, so it is never committed here. Keep yours private,
+> and treat it as sensitive if you share it.
 > the NVS region (`0x9000`–`0xE000`) first.
 
 ## Restore stock firmware
 
 ```bash
-esptool --port /dev/ttyACM0 write-flash 0x0 backup/stock-firmware/murphy-m3-full-flash-16MB.bin
+# Take your own backup first -- this is the only way back to factory firmware:
+esptool --port /dev/ttyACM0 read-flash 0x0 0x1000000 stock-backup-16MB.bin
+# ...and to restore it later:
+esptool --port /dev/ttyACM0 write-flash 0x0 stock-backup-16MB.bin
 ```
 
 *(This README is updated as the port progresses.)*

@@ -9,3 +9,11 @@ __pycache__/
 # Shareable firmware artifacts (regenerated per release; too large to track)
 /firmware.bin
 /firmware-full-16MB.bin
+
+# Stock firmware dumps: the NVS partition contains this device's WiFi
+# credentials. Never track these -- keep them outside the repo or here,
+# untracked. Keep a copy outside the repository.
+/backup/
+
+# Semantic-index tool cache: machine-generated, embeds local paths
+/graphify-out/

@@ -5,7 +5,7 @@ Get Crosspoint firmware fully working on the Murphy M3: EPUB + MOBI reading, PDF
 (stretch goal), and a usable audio player replacing the limited stock one.
 
 ## Ground rules
-1. Stock firmware backup in `backup/stock-firmware/` is sacred. Verify it exists and its
+1. The stock firmware backup (kept OUTSIDE this repo, untracked -- its NVS holds WiFi creds) is sacred. Verify it exists and its
    SHA256 matches `SHA256SUMS` before any flash write.
 2. Flash writes to the device require TBOT's explicit go-ahead each session.
 3. Device is on native USB-Serial/JTAG (`/dev/ttyACM0`) — it cannot be soft-bricked while
@@ -16,4 +16,4 @@ Get Crosspoint firmware fully working on the Murphy M3: EPUB + MOBI reading, PDF
 ## Quick commands
 - Probe: `esptool --port /dev/ttyACM0 flash-id`
 - Backup: `esptool --port /dev/ttyACM0 read-flash 0x0 0x1000000 out.bin`
-- Restore stock: `esptool --port /dev/ttyACM0 write-flash 0x0 backup/stock-firmware/murphy-m3-full-flash-16MB.bin`
+- Restore stock: `esptool --port /dev/ttyACM0 write-flash 0x0 <your-stock-backup>.bin`
