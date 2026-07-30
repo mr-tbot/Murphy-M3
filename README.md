@@ -34,8 +34,7 @@ Take your own stock backup first; it is the only way back to factory firmware.
 ## Repo layout
 
 - `backup/stock-firmware/` — *not in this repository.* A stock flash dump is the way back to
-  factory firmware, but its NVS partition holds the device owner's WiFi credentials, so it is
-  deliberately untracked. Take your own before flashing (see below).
+  factory firmware, it is best practice to take your own backup before flashing this firmware.  The crosspoint official repo has backups for this device available.
 - [`crosspoint/`](crosspoint/) — CrossPoint firmware, `develop` branch (submodule, includes freeink-sdk)
 - [`upstream/freeink-sdk/`](upstream/freeink-sdk/) — FreeInk SDK: `MurphyM3` board profile, `Uc8253MurphyDriver`, ES8388 AudioManager, `[env:murphy]` (submodule)
 - [`upstream/murphy/`](upstream/murphy/) — crosspoint-reader/Murphy: M3/M4 dumps, Ghidra findings, probe sketches (submodule; local branches `pr1-teardown`, `pr2-schematic`)
