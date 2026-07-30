@@ -8,6 +8,19 @@ profile), the community reverse-engineering work, and a deep-dive port analysis.
 
 **Start here → [analysis/crosspoint-port-deep-dive.md](analysis/crosspoint-port-deep-dive.md)**
 
+
+## Prebuilt firmware
+
+If you own this device and just want to try it:
+**[Download the firmware release](https://github.com/mr-tbot/crosspoint-reader/releases/tag/murphy-m3-v1)**
+— flashing instructions, checksums and known limits are in [FLASHING.md](FLASHING.md).
+Take your own stock backup first; it is the only way back to factory firmware.
+
+## Upstream pull requests
+
+- Hardware support: [Free-Ink/freeink-sdk#25](https://github.com/Free-Ink/freeink-sdk/pull/25)
+- Reader, formats and audio: [crosspoint-reader/crosspoint-reader#2794](https://github.com/crosspoint-reader/crosspoint-reader/pull/2794)
+
 ## Device (probed over USB)
 
 | Component | Detail |
