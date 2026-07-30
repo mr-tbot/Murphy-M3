@@ -64,8 +64,11 @@ discarded, which reads as patchy, uneven, washed-out text with visible gaps in
 thin strokes.
 
 New `--ink-floor` option (default 4, so every existing cut is byte-identical)
-sets that cutoff. Murphy's small cuts are generated with `--ink-floor 2`. Glyph
-metrics are untouched, so layout and existing caches stay valid.
+sets that cutoff. Murphy's small cuts are generated with `--ink-floor 3`, which
+was picked by measurement and then confirmed on the panel: of the stroke ink in a
+7 pt glyph the default cut paints 79 %, floor 3 paints 85 %, and floor 2 paints
+90 % and reads too thick. Glyph metrics are untouched, so layout and existing
+caches stay valid.
 
 ### Grayscale capability gating
 
@@ -213,11 +216,17 @@ file fails with a message rather than crashing or hanging.
 
 ## Testing on hardware
 
-Verified on the device, with a human at the panel: SD access, touch and
-gestures, UI legibility at the new density, reading at 5–10 pt, page-turn
-quality, battery and charging indicators, frontlight, sleep behaviour, EPUB
-rendering, MOBI conversion and reading, PDF conversion and reading, and audio
-playback.
+Verified on the device, iteratively, with a human at the panel: SD access, touch
+and gestures across menus and lists, UI legibility at the new density, reading at
+5–10 pt, text weight, page-turn quality, battery and charging indicators,
+frontlight, sleep behaviour, EPUB rendering, MOBI conversion and reading (both
+plain and illustrated), PDF conversion and reading, and audio playback.
+
+Several fixes in this PR exist *because* of that loop rather than in spite of it:
+the waveform work, the touch mapping, the UI density, the reader font sizes and
+the ink floor were each tuned against what the panel actually showed, and the
+list hit-test bug was found from a report that touch worked "in some menus but
+not others".
 
 ## Companion PR
 
