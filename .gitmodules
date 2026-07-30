@@ -1,10 +1,11 @@
 [submodule "crosspoint"]
 	path = crosspoint
-	url = https://github.com/crosspoint-reader/crosspoint-reader
-	branch = develop
+	url = https://github.com/mr-tbot/crosspoint-reader
+	branch = murphy-m3-support
 [submodule "upstream/freeink-sdk"]
 	path = upstream/freeink-sdk
-	url = https://github.com/Free-Ink/freeink-sdk
+	url = https://github.com/mr-tbot/freeink-sdk
+	branch = murphy-m3-support
 [submodule "upstream/murphy"]
 	path = upstream/murphy
 	url = https://github.com/crosspoint-reader/Murphy
@@ -14,4 +15,5 @@
 	branch = feat-support-for-m3
 [submodule "upstream/freeink-reader"]
 	path = upstream/freeink-reader
-	url = https://github.com/Free-Ink/freeink-reader
+	url = https://github.com/mr-tbot/freeink-reader
+	branch = murphy-m3-bringup
