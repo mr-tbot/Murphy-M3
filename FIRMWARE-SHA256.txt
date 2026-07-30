@@ -1,2 +1,2 @@
-31bafaad24cf27f938ccf86ff9405db8d7364c42700ba78a2edc243fc033f6b5  firmware.bin
-d542a79bdebccaa656acf620e72d0b2753908600c1cea5681b7410159c22e522  firmware-full-16MB.bin
+f4f62974af2ac6e3d8bbb65a048a508057a1a1ee93bd7f0abc4696d00ff3430e  firmware.bin
+de30041900aee7b4b4aa1031a1e2cd188cc7f84dee674dc0ad11f43aa8be9844  firmware-full-16MB.bin
