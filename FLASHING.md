@@ -44,7 +44,7 @@ Connect over USB-C; the device shows up as `/dev/ttyACM0` on Linux, `/dev/cu.usb
 on macOS, or a COM port on Windows.
 
 If the device does not appear, hold the **bottom** button while plugging in to
-force the ROM bootloader.
+force the ROM bootloader.(If that doesn't work, plug in USB, press the bottom left button while holding the bottom most right button...  which should force the correct flashing mode.)
 
 ### Option A — keep your settings (app only)
 
